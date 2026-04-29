@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DragonGlass Window Cleaning</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="logo.png" />
+</head>
+<body>
+
+  <div id="popup" class="popup">
+  <div class="popup-content">
+    <span class="close-btn">&times;</span>
+    <p>"Welcome! I’m personally building and improving this website, so things may change as I make it even better."</p>
+  </div>
+</div>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="DragonGlass Shineworks Logo">
+    </div>
+    <nav>
+      <ul class="menu">
+        <li><a href="#">Home</a></li>
+        <li>
+          <a href="#">Services</a>
+          <ul class="submenu">
+            <li><a href="#">Residential</a></li>
+            <li><a href="#">Commercial</a></li>
+            <li><a href="#">Post-Construction</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Service Areas</a>
+          <ul class="submenu">
+            <li><a href="#">Danville, KY</a></li>
+            <li><a href="#">Harrodsburg, KY</a></li>
+            <li><a href="#">Lancaster, KY</a></li>
+            <li><a href="#">Perryville, KY</a></li>
+            <li><a href="#">Nicholasville, KY</a></li>
+          </ul>
+        </li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </nav>
+    <a href="tel:6062828825" class="call-now">Call Now</a>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-overlay">
+      <h1>DragonGlass Window Cleaning</h1>
+      <p>“From Residential to Commercial, We’ve Got You Covered”</p>
+      <a href="#quote-form" class="cta-btn">Request a Free Quote</a>
+    </div>
+  </section>
+
+  <!-- Quote Form -->
+  <section id="quote-form" class="quote-form">
+    <h2>Request a Free Quote</h2>
+    <form action="https://formspree.io/f/myzdpyno" method="POST">
+  <input type="text" name="full-name" placeholder="Full Name" required>
+  <input type="text" name="address" placeholder="Address" required>
+  <input type="text" name="city" placeholder="City" required>
+  <input type="email" name="email" placeholder="Email" required>
+  <input type="tel" name="phone" placeholder="Phone Number" required>
+  <textarea name="message" placeholder="Message or Questions"></textarea>
+  <button type="submit">Send Request</button>
+  <p id="form-status"></p>
+</form>
+<script>
+const form = document.querySelector("form");
+const status = document.getElementById("form-status");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const data = new FormData(form);
+  const response = await fetch(form.action, {
+    method: form.method,
+    body: data,
+    headers: { 'Accept': 'application/json' }
+  });
+  if (response.ok) {
+    status.textContent = "Thanks! Your request has been sent.";
+    form.reset();
+  } else {
+    status.textContent = "Oops! There was a problem. Please try again.";
+  }
+});
+</script>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>DragonGlass Window Cleaning &copy; 2025</p>
+    <p>Email: dragonglassky@outlook.com | Phone: 606-282-8825</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
