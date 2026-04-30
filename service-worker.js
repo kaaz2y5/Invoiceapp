@@ -1,4 +1,4 @@
-const CACHE = 'invoiceapp-v4';
+const CACHE = 'invoiceapp-v5';
 
 // Works for both root hosting and GitHub Pages project hosting.
 const BASE = self.location.pathname.replace(/\/service-worker\.js$/, '/');
