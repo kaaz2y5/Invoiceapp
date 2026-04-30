@@ -1,4 +1,4 @@
-const CACHE = 'invoiceapp-v3';
+const CACHE = 'invoiceapp-v4';
 
 // Works for both root hosting and GitHub Pages project hosting.
 const BASE = self.location.pathname.replace(/\/service-worker\.js$/, '/');
@@ -40,6 +40,16 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
+
+  if (event.request.mode === 'navigate') {
+    event.respondWith(
+      caches
+        .match(`${BASE}index.html`)
+        .then((cached) => cached || caches.match(BASE))
+        .then((cached) => cached || fetch(event.request))
+    );
+    return;
+  }
 
   event.respondWith(
     caches.match(event.request).then((cached) => {
