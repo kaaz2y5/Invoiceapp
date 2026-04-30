@@ -1,4 +1,4 @@
-const CACHE = 'invoiceapp-v2';
+const CACHE = 'invoiceapp-v3';
 
 // Works for both root hosting and GitHub Pages project hosting.
 const BASE = self.location.pathname.replace(/\/service-worker\.js$/, '/');
@@ -8,12 +8,24 @@ const ASSETS = [
   `${BASE}styles.css`,
   `${BASE}app.js`,
   `${BASE}manifest.webmanifest`,
-  `${BASE}logo.svg`
+  `${BASE}assets/logo.png`
 ];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE).then((cache) => cache.addAll(ASSETS)).then(() => self.skipWaiting())
+    caches
+      .open(CACHE)
+      .then((cache) =>
+        Promise.all(
+          ASSETS.map((asset) =>
+            fetch(asset).then((response) => {
+              if (response.ok) return cache.put(asset, response);
+              return Promise.resolve();
+            })
+          )
+        )
+      )
+      .then(() => self.skipWaiting())
   );
 });
 
