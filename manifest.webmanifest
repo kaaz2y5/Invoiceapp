@@ -1,0 +1,9 @@
+{
+  "name": "Mobile Oil Change Invoice",
+  "short_name": "InvoiceApp",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f4f7fb",
+  "theme_color": "#0ea5e9",
+  "icons": []
+}
